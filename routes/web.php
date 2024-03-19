@@ -15,16 +15,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('home');
 });
 
 Auth::routes();
 
 Route::group(['middleware' => ['auth:web']], function () {
     Route::resource('users', UserController::class);
-    Route::get('users/trashed', [UserController::class, 'trashed'])->name('users.trashed');
-    Route::post('users/restore/{id}', [UserController::class, 'restore'])->name('users.restore');
-    Route::delete('users/force-delete/{id}', [UserController::class, 'forceDelete'])->name('users.force-delete');
+    Route::get('user/deleted', [UserController::class, 'trashed'])->name('users.trashed');
+    Route::get('user/restore/{id}', [UserController::class, 'restore'])->name('users.restore');
+    Route::delete('user/force-delete/{id}', [UserController::class, 'forceDelete'])->name('users.force-delete');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

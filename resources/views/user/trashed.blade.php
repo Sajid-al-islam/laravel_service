@@ -18,7 +18,7 @@
                 <div class="card-header pb-0">
                     <div class="d-flex flex-row justify-content-between">
                         <div>
-                            <h5 class="mb-0">All Users</h5>
+                            <h5 class="mb-0">Deleted Users</h5>
                         </div>
                         <a href="{{ route('users.create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New User</a>
                     </div>
@@ -49,7 +49,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse ($users as $key => $user)
+                            @forelse ($trashedUsers as $key => $user)
                                 <tr>
                                     <td class="ps-4">
                                         <p class="text-xs font-weight-bold mb-0">{{ $key+1 }}</p>
@@ -69,20 +69,17 @@
                                         <span class="text-secondary text-xs font-weight-bold">{{\Carbon\Carbon::parse($user->created_at)->format('d F Y')}}</span>
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{ route('users.show', $user->id) }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="user details">
-                                            <i class="fas fa-external-link-alt text-secondary" aria-hidden="true"></i>
-                                        </a>
-                                        <a href="{{ route('users.edit', $user->id) }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit user">
-                                            <i class="fas fa-user-edit text-secondary" aria-hidden="true"></i>
+                                        <a href="{{ route('users.restore', $user->id) }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Restore">
+                                            <i class="fas fa-undo text-secondary" aria-hidden="true"></i>
                                         </a>
                                         <a onclick="alert('Are you sure?'); event.preventDefault();
                                             document.getElementById('delete_form_{{ $user->id }}').submit();" href="#"
-                                            class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete User">
+                                            class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Force Delete">
                                             <span>
                                                 <i class="cursor-pointer fas fa-trash text-secondary" aria-hidden="true"></i>
                                             </span>
 
-                                            <form id="delete_form_{{ $user->id }}" action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-none">
+                                            <form id="delete_form_{{ $user->id }}" action="{{ route('users.force-delete', $user->id) }}" method="POST" class="d-none">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
@@ -96,13 +93,6 @@
                             @endforelse
                             </tbody>
                         </table>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 m-auto">
-                            <div class="pagination_area px-4 py-2">
-                                {{ $users->links('pagination::bootstrap-5') }}
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

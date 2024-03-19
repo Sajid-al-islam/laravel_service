@@ -92,7 +92,7 @@ class UserController extends Controller
     public function trashed()
     {
         $trashedUsers = $this->userService->getTrashedUsers();
-        return view('users.trashed', compact('trashedUsers'));
+        return view('user.trashed', compact('trashedUsers'));
     }
 
 

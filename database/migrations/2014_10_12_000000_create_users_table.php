@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('photo', 120)->nullable();
             $table->string('email')->unique();
-            $table->string('phone_number', 20)->nullable()->unique();
+            $table->string('phone_number', 20)->nullable();
+            $table->string('photo', 120)->default('images/avatar.png')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
@@ -31,5 +31,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('users');
+        Schema::dropIfExists('user_addresses');
     }
 };

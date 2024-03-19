@@ -76,17 +76,29 @@
 
                         <div class="row mt-3">
                             <div class="col-12 col-sm-12 mt-3 mt-sm-0">
-                                <h3>Addresses</h3>
-                                <div id="addressFields">
-                                    <div class="addressField">
-                                        <input type="text" class="mb-2 multisteps-form__input form-control" name="addresses[0][address]" placeholder="Address">
-                                        <input type="text" class="mb-2 multisteps-form__input form-control" name="addresses[0][city]" placeholder="City">
-                                        <input type="text" class="mb-2 multisteps-form__input form-control" name="addresses[0][state]" placeholder="State">
-                                        <input type="text" class="mb-2 multisteps-form__input form-control" name="addresses[0][zip_code]" placeholder="Zip Code">
-                                        <button type="button" class="btn bg-gradient-danger ms-auto" class="deleteAddressField">Delete</button>
+                                <h5 class="font-weight-bolder mb-0">Addresses</h5>
+                                <div id="addressFields" class="row">
+                                    <div class="addressField col-12 col-md-6">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <input type="text" name="addresses[0][address]" placeholder="Address Line 1" class="form-control mb-2">
+                                            </div>
+                                            <div class="col-4">
+                                                <input type="text" name="addresses[0][city]" placeholder="City" required class="form-control">
+                                            </div>
+                                            <div class="col-4">
+                                                <input type="text" name="addresses[0][state]" placeholder="State" required class="form-control">
+                                            </div>
+                                            <div class="col-4">
+                                                <input type="text" name="addresses[0][zip_code]" placeholder="Zip Code" required class="form-control">
+                                            </div>
+                                            <div class="col-12 mt-2">
+                                                <button type="button" class="deleteAddressField btn btn-danger">Delete</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <button type="button" class="btn bg-gradient-secondary ms-auto" id="addAddressField">Add Address</button>
+                                <button type="button" id="addAddressField" class="btn btn-primary mt-3">Add Address</button>
                             </div>
                         </div>
 
@@ -107,13 +119,25 @@
 
         addAddressFieldBtn.addEventListener('click', () => {
             const newAddressField = document.createElement('div');
-            newAddressField.classList.add('addressField');
+            newAddressField.classList.add('addressField', 'col-12', 'col-md-6');
             newAddressField.innerHTML = `
-                <input type="text" name="addresses[${addressFieldIndex}][address]" placeholder="Address Line 1">
-                <input type="text" name="addresses[${addressFieldIndex}][city]" placeholder="City">
-                <input type="text" name="addresses[${addressFieldIndex}][state]" placeholder="State">
-                <input type="text" name="addresses[${addressFieldIndex}][zip_code]" placeholder="Zip Code">
-                <button type="button" class="deleteAddressField">Delete</button>
+                <div class="row">
+                    <div class="col-12">
+                        <input type="text" name="addresses[${addressFieldIndex}][address]" placeholder="Address Line 1" required class="form-control mb-2">
+                    </div>
+                    <div class="col-4">
+                        <input type="text" name="addresses[${addressFieldIndex}][city]" placeholder="City" required class="form-control">
+                    </div>
+                    <div class="col-4">
+                        <input type="text" name="addresses[${addressFieldIndex}][state]" placeholder="State" required class="form-control">
+                    </div>
+                    <div class="col-4">
+                        <input type="text" name="addresses[${addressFieldIndex}][zip_code]" placeholder="Zip Code" required class="form-control">
+                    </div>
+                    <div class="col-12 mt-2">
+                        <button type="button" class="deleteAddressField btn btn-danger">Delete</button>
+                    </div>
+                </div>
             `;
             addressFieldsContainer.appendChild(newAddressField);
             addressFieldIndex++;
@@ -124,7 +148,7 @@
             const deleteAddressFieldBtns = document.querySelectorAll('.deleteAddressField');
             deleteAddressFieldBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
-                    const addressField = btn.parentNode;
+                    const addressField = btn.parentNode.parentNode.parentNode;
                     addressFieldsContainer.removeChild(addressField);
                 });
             });

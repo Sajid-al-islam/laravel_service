@@ -91,7 +91,7 @@ class UserServiceFeatureTest extends TestCase
 
         $user->delete();
 
-        $response = $this->post('/users/restore/' . $user->id);
+        $response = $this->get('/users/restore/' . $user->id);
         $response->assertStatus(302);
 
         $this->assertDatabaseHas('users', ['id' => $user->id, 'deleted_at' => null]);
