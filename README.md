@@ -1,4 +1,3 @@
-![visitors](https://visitor-badge.laobi.icu/badge?page_id=Sajid-al-islam.laravel_service.readme)
 # Welcome to Laravel Service Apllication
 
 ##  Table of contents
