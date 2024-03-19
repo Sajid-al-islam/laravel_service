@@ -2,7 +2,7 @@
 
 namespace App\Contracts;
 
-interface UserInterface
+interface UserServiceInterface
 {
     public function getAllUsers();
     public function getUserById($id);

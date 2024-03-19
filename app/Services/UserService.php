@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Contracts\UserInterface;
+use App\Events\UserSaved;
 use App\Models\User;
 use Illuminate\Support\Arr;
 
@@ -20,7 +21,11 @@ class UserService implements UserInterface
 
     public function createUser(array $data)
     {
-        return User::create($data);
+        $user = User::create($data);
+
+        event(new UserSaved($user));
+
+        return $user;
     }
 
     public function updateUser($id, array $data)
@@ -30,6 +35,7 @@ class UserService implements UserInterface
             $data = Arr::except($data,['password']);
         }
         $user->update($data);
+        event(new UserSaved($user));
         return $user;
     }
 
