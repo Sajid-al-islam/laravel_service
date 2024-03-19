@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\UserAddress;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $total_users = User::count();
+        $total_address = UserAddress::count();
+        $deleted_user = User::onlyTrashed()->count();
+        return view('home', compact('total_address', 'total_users', 'deleted_user'));
     }
 }
