@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Http\Traits\FileUploadTrait;
 use App\Services\UserService;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class UserController extends Controller
     public function index()
     {
         $users = $this->userService->getAllUsers();
-        return view('user.list', ['users', $users]);
+        return view('user.list', compact('users'));
     }
 
     /**
@@ -31,16 +32,16 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('user.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
         $user = $this->userService->createUser($request->validated());
-        $this->uploadImage($request->validated(), $user, self::IMAGE_FIELD);
+        $this->uploadImage($request, $user, self::IMAGE_FIELD);
 
         return redirect()->route('users.index')->with('success', 'User created successfully.');
     }

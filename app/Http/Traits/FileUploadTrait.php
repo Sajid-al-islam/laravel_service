@@ -10,7 +10,7 @@ trait FileUploadTrait
     {
         $status = false;
         if ($request->hasFile($file_name)) {
-            $model_data->file_name = Storage::put('uploads/user',$request->file($file_name));
+            $model_data->$file_name = $request->file($file_name)->store('public/uploads/user', 'local');
             $model_data->save();
             $status = true;
         }

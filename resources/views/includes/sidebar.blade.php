@@ -65,13 +65,13 @@
                 </a>
                 <div class="collapse {{ request()->routeIs('users.*') ? 'show' : '' }}" id="componentsExamples">
                     <ul class="nav ms-4 ps-3">
-                        <li class="nav-item {{ request()->routeIs('users.*') ? 'active' : '' }}">
+                        <li class="nav-item {{ request()->route()->getName() == 'users.index' ? ' active' : '' }}">
                             <a class="nav-link {{ request()->route()->getName() == 'users.index' ? ' active' : '' }}" href="{{ route('users.index') }}">
                                 <span class="sidenav-normal"> User list </span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="https://www.creative-tim.com/learning-lab/bootstrap/alerts/soft-ui-dashboard" target="_blank">
+                            <a class="nav-link {{ request()->route()->getName() == 'users.create' ? ' active' : '' }}" href="{{ route('users.create') }}" target="_blank">
                                 <span class="sidenav-normal"> Create User </span>
                             </a>
                         </li>

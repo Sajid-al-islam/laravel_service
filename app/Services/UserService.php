@@ -2,13 +2,14 @@
 
 namespace App\Services;
 
+use App\Contracts\UserInterface;
 use App\Models\User;
 
-class UserService
+class UserService implements UserInterface
 {
     public function getAllUsers()
     {
-        return User::get();
+        return User::whereNot('id', auth()->user()->id)->paginate(10);
     }
 
     public function getUserById($id)
