@@ -56,9 +56,6 @@ clone project
 git clone https://github.com/Sajid-al-islam/laravel_service.git
 ```
 
-or [Click here to download .zip](https://github.com/Md-shefat-masum/hiring-portal/archive/refs/heads/main.zip)
-
-
 install dependencies
 ```
 composer install
