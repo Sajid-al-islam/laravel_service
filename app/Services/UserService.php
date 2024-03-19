@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Contracts\UserInterface;
 use App\Models\User;
+use Illuminate\Support\Arr;
 
 class UserService implements UserInterface
 {
@@ -25,6 +26,9 @@ class UserService implements UserInterface
     public function updateUser($id, array $data)
     {
         $user = User::findOrFail($id);
+        if(empty($data['password'])) {
+            $data = Arr::except($data,['password']);
+        }
         $user->update($data);
         return $user;
     }

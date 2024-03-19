@@ -62,11 +62,11 @@
                         <div class="row mt-3">
                             <div class="col-12 col-sm-6">
                                 <label>Password</label>
-                                <input name="password" class="multisteps-form__input form-control" type="password" placeholder="******" onfocus="focused(this)" onfocusout="defocused(this)" required/>
+                                <input name="password" class="multisteps-form__input form-control" type="password" placeholder="******" onfocus="focused(this)" onfocusout="defocused(this)"/>
                             </div>
                             <div class="col-12 col-sm-6 mt-3 mt-sm-0">
                                 <label>Repeat Password</label>
-                                <input name="password_confirmation" class="multisteps-form__input form-control" type="password" placeholder="******" onfocus="focused(this)" onfocusout="defocused(this)" required/>
+                                <input name="password_confirmation" class="multisteps-form__input form-control" type="password" placeholder="******" onfocus="focused(this)" onfocusout="defocused(this)" />
                             </div>
                         </div>
                         <div class="row mt-3">

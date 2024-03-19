@@ -23,8 +23,8 @@ Auth::routes();
 Route::group(['middleware' => ['auth:web']], function () {
     Route::resource('users', UserController::class);
     Route::get('users/trashed', [UserController::class, 'trashed'])->name('users.trashed');
-    Route::get('users/{id}/restore', [UserController::class, 'restore'])->name('users.restore');
-    Route::delete('users/{id}/force-delete', [UserController::class, 'forceDelete'])->name('users.force-delete');
+    Route::post('users/restore/{id}', [UserController::class, 'restore'])->name('users.restore');
+    Route::delete('users/force-delete/{id}', [UserController::class, 'forceDelete'])->name('users.force-delete');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

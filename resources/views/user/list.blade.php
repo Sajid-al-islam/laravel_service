@@ -69,6 +69,9 @@
                                         <span class="text-secondary text-xs font-weight-bold">{{\Carbon\Carbon::parse($user->created_at)->format('d F Y')}}</span>
                                     </td>
                                     <td class="text-center">
+                                        <a href="{{ route('users.show', $user->id) }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="user details">
+                                            <i class="fas fa-external-link-alt text-secondary" aria-hidden="true"></i>
+                                        </a>
                                         <a href="{{ route('users.edit', $user->id) }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit user">
                                             <i class="fas fa-user-edit text-secondary" aria-hidden="true"></i>
                                         </a>

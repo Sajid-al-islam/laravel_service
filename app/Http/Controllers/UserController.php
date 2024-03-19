@@ -71,8 +71,10 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, string $id)
     {
         $user = $this->userService->updateUser($id, $request->validated());
-        $this->deleteOldFile($user->photo);
-        $this->uploadImage($request->validated(), $user, self::IMAGE_FIELD);
+        if(!empty($user->photo)) {
+            $this->deleteOldFile($user->photo);
+            $this->uploadImage($request, $user, self::IMAGE_FIELD);
+        }
 
         return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }
