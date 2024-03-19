@@ -7,9 +7,9 @@
 * [Setup](#setup)
 
 ##  Introduction
-The "Laravel Service Apllication" is a web application where users can create their accounts, and manage other users
+The "Laravel Service Apllication" is a web application where users can create their accounts, and manage other users, and their addresses
 
-##  Features
+##  Features:
  
  ### User:
  - User can register and login.
@@ -26,7 +26,12 @@ The "Laravel Service Apllication" is a web application where users can create th
 		 - create
 		 - update
 		 - delete
-		 - 
+     
+   ### Application Features:
+     - Service Arcitechture.
+     - Unit test
+     - Event listener
+      
 ## Technologies
 * PHP Laravel
 * mySQL
