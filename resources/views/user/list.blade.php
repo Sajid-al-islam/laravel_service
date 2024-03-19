@@ -4,6 +4,17 @@
     <div class="row">
         <div class="col-12">
             <div class="card mb-4 mx-4">
+                @if(Session::has('success'))
+                    <div class="alert alert-success alert-dismissible">
+                        {{ Session::get('success') }}
+                        @php
+                            Session::forget('success');
+                        @endphp
+                        <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                @endif
                 <div class="card-header pb-0">
                     <div class="d-flex flex-row justify-content-between">
                         <div>
@@ -58,12 +69,21 @@
                                         <span class="text-secondary text-xs font-weight-bold">{{\Carbon\Carbon::parse($user->created_at)->format('d F Y')}}</span>
                                     </td>
                                     <td class="text-center">
-                                        <a href="#" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit user">
+                                        <a href="{{ route('users.edit', $user->id) }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit user">
                                             <i class="fas fa-user-edit text-secondary" aria-hidden="true"></i>
                                         </a>
-                                        <span>
-                                            <i class="cursor-pointer fas fa-trash text-secondary" aria-hidden="true"></i>
-                                        </span>
+                                        <a onclick="alert('Are you sure?'); event.preventDefault();
+                                            document.getElementById('delete_form_{{ $user->id }}').submit();" href="#"
+                                            class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete User">
+                                            <span>
+                                                <i class="cursor-pointer fas fa-trash text-secondary" aria-hidden="true"></i>
+                                            </span>
+
+                                            <form id="delete_form_{{ $user->id }}" action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-none">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                        </a>
                                     </td>
                                 </tr>
                             @empty

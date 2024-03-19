@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Traits\FileUploadTrait;
 use App\Services\UserService;
 use Illuminate\Http\Request;
@@ -52,7 +53,7 @@ class UserController extends Controller
     public function show(string $id)
     {
         $user = $this->userService->getUserById($id);
-        return view('users.show', compact('user'));
+        return view('user.show', compact('user'));
     }
 
     /**
@@ -61,13 +62,13 @@ class UserController extends Controller
     public function edit(string $id)
     {
         $user = $this->userService->getUserById($id);
-        return view('users.edit', compact('user'));
+        return view('user.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateUserRequest $request, string $id)
     {
         $user = $this->userService->updateUser($id, $request->validated());
         $this->deleteOldFile($user->photo);

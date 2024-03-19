@@ -28,9 +28,10 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
+            'phone_number' => fake()->phoneNumber(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
-            'photo' => 'assets/img/' . $images[array_rand($images)],
+            'photo' => 'images/' . $images[array_rand($images)],
             'remember_token' => Str::random(10),
         ];
     }
