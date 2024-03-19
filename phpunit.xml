@@ -1,0 +1,51 @@
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.0/phpunit.xsd"
+    backupGlobals="false"
+    colors="true"
+    bootstrap="bootstrap/app.php"
+>
+    <php>
+        <ini name="error_reporting" value="-1" />
+        <server name="APP_ENV" value="testing" />
+        <server name="BCRYPT_ROUNDS" value="4" />
+        <server name="CACHE_DRIVER" value="array" />
+        <server name="MAIL_MAILER" value="log" />
+        <server name="QUEUE_CONNECTION" value="sync" />
+        <server name="SESSION_DRIVER" value="array" />
+    </php>
+
+    <testsuites>
+        <testsuite name="Unit">
+            <directory suffix="Test.php">./tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Feature">
+            <directory suffix="Test.php">./tests/Feature</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory>./app</directory>
+            <exclude>
+                <directory>./app/Http</directory>
+                <directory>./app/Providers</directory>
+                <directory>./app/Services</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">./app</directory>
+        </include>
+    </coverage>
+
+    <listeners>
+        <listener class="Illuminate\Foundation\Testing\Listeners\BeforeClassHookListener">
+            <arguments>
+                <directory suffix="Test.php">./tests/Unit</directory>
+            </arguments>
+        </listener>
+    </listeners>
+</phpunit>
