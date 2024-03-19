@@ -41,6 +41,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
+        // dd($request->all());
         $user = $this->userService->createUser($request->validated());
         $this->uploadImage($request, $user, self::IMAGE_FIELD);
 

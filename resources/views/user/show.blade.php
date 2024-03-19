@@ -54,9 +54,17 @@
           </div>
           <div class="card-body p-3">
             <ul class="list-group">
-                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Full Name:</strong> &nbsp; {{ $user->name }}</li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Mobile:</strong> &nbsp; {{ $user->phone_number }}</li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> &nbsp; {{ $user->email }}</li>
+                @forelse ($user->addresses as $key => $address)
+                    <ol class="list-group-item border-0 ps-0 pt-0 text-sm">
+                        <strong class="text-dark">Address no - </strong> {{ $key+1 }}: <br>
+                        <strong class="text-dark">State:</strong> {{ $address->state }} <br>
+                        <strong class="text-dark">City:</strong> {{ $address->city }} <br>
+                        <strong class="text-dark">ZIP:</strong> {{ $address->zip_code }} <br>
+                        <strong class="text-dark">Address:</strong> {{ $address->address }} <br>
+                    </ol>
+                @empty
+                    <span class="text-center">No address found</span>
+                @endforelse
             </ul>
           </div>
         </div>

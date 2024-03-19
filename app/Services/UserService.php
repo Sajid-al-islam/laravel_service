@@ -2,12 +2,12 @@
 
 namespace App\Services;
 
-use App\Contracts\UserInterface;
+use App\Contracts\UserServiceInterface;
 use App\Events\UserSaved;
 use App\Models\User;
 use Illuminate\Support\Arr;
 
-class UserService implements UserInterface
+class UserService implements UserServiceInterface
 {
     public function getAllUsers()
     {
@@ -16,7 +16,7 @@ class UserService implements UserInterface
 
     public function getUserById($id)
     {
-        return User::findOrFail($id);
+        return User::with('addresses')->findOrFail($id);
     }
 
     public function createUser(array $data)

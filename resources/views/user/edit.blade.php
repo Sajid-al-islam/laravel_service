@@ -76,6 +76,33 @@
                                 <input name="photo" class="multisteps-form__input form-control" type="file" onfocus="focused(this)" onfocusout="defocused(this)" accept="image/*" />
                             </div>
                         </div>
+
+                        <div class="row mt-3">
+                            <div class="col-12 col-sm-12 mt-3 mt-sm-0">
+                                <h3>Addresses</h3>
+                                <div id="addressFields">
+                                    @forelse ($user->addresses as $index => $address)
+                                        <div class="addressField">
+                                            <input type="text" name="addresses[{{ $index }}][address]" placeholder="Address Line 1" value="{{ $address->address_line_1 }}">
+                                            <input type="text" name="addresses[{{ $index }}][city]" placeholder="City" value="{{ $address->city }}">
+                                            <input type="text" name="addresses[{{ $index }}][state]" placeholder="State" value="{{ $address->state }}">
+                                            <input type="text" name="addresses[{{ $index }}][zip_code]" placeholder="Zip Code" value="{{ $address->zip_code }}">
+                                            <button type="button" class="deleteAddressField">Delete</button>
+                                        </div>
+                                    @empty
+                                        <div class="addressField">
+                                            <input type="text" name="addresses[0][address]" placeholder="Address Line 1">
+                                            <input type="text" name="addresses[0][city]" placeholder="City">
+                                            <input type="text" name="addresses[0][state]" placeholder="State">
+                                            <input type="text" name="addresses[0][zip_code]" placeholder="Zip Code">
+                                            <button type="button" class="deleteAddressField">Delete</button>
+                                        </div>
+                                    @endforelse
+                                </div>
+                                <button type="button" class="btn bg-gradient-secondary ms-auto" id="addAddressField">Add Address</button>
+                            </div>
+                        </div>
+
                         <div class="button-row d-flex mt-4">
                             <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="submit">Submit</button>
                         </div>
@@ -85,4 +112,37 @@
 
         </div>
     </div>
+    <script>
+        const addressFieldsContainer = document.getElementById('addressFields');
+        const addAddressFieldBtn = document.getElementById('addAddressField');
+
+        let addressFieldIndex = 1;
+
+        addAddressFieldBtn.addEventListener('click', () => {
+            const newAddressField = document.createElement('div');
+            newAddressField.classList.add('addressField');
+            newAddressField.innerHTML = `
+                <input type="text" name="addresses[${addressFieldIndex}][address]" placeholder="Address Line 1">
+                <input type="text" name="addresses[${addressFieldIndex}][city]" placeholder="City">
+                <input type="text" name="addresses[${addressFieldIndex}][state]" placeholder="State">
+                <input type="text" name="addresses[${addressFieldIndex}][zip_code]" placeholder="Zip Code">
+                <button type="button" class="deleteAddressField">Delete</button>
+            `;
+            addressFieldsContainer.appendChild(newAddressField);
+            addressFieldIndex++;
+            addDeleteAddressFieldListeners();
+        });
+
+        function addDeleteAddressFieldListeners() {
+            const deleteAddressFieldBtns = document.querySelectorAll('.deleteAddressField');
+            deleteAddressFieldBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const addressField = btn.parentNode;
+                    addressFieldsContainer.removeChild(addressField);
+                });
+            });
+        }
+
+        addDeleteAddressFieldListeners();
+    </script>
 @endsection
