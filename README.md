@@ -1,4 +1,4 @@
-# Welcome to Laravel Service Apllication
+# Welcome to Laravel User Management Apllication
 
 ##  Table of contents
 * [Introduction](#introduction)
@@ -7,7 +7,7 @@
 * [Setup](#setup)
 
 ##  Introduction
-The "Laravel Service Apllication" is a web application where users can create their accounts, and manage other users, and their addresses
+The "Laravel User anagement Apllication" is a web application where users can create their accounts, and manage other users, and their addresses
 
 ##  Features:
  
@@ -128,4 +128,11 @@ php artisan serve --port=8001 | any supported port number
 **user:** 
 email: admin@gmail.com 
 pass: @12345678
+
+####  For testing, run
+```
+php artisan test
+```
+
+
 
