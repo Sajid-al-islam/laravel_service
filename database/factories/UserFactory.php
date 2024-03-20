@@ -25,6 +25,7 @@ class UserFactory extends Factory
     public function definition(): array
     {
         $images = ['team-1.jpg', 'team-2.jpg','team-3.jpg','team-4.jpg','team-5.jpg'];
+        
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
