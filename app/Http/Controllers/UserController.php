@@ -99,12 +99,14 @@ class UserController extends Controller
     public function restore($id)
     {
         $this->userService->restoreUser($id);
+
         return redirect()->route('users.index')->with('success', 'User restored successfully.');
     }
 
     public function forceDelete($id)
     {
         $this->userService->forceDeleteUser($id);
+
         return redirect()->route('users.trashed')->with('success', 'User permanently deleted.');
     }
 }
