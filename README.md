@@ -56,14 +56,14 @@ clone project
 git clone https://github.com/Sajid-al-islam/laravel_service.git
 ```
 
-install dependencies
-```
-composer install
-```
-
 swith directory to project
 ```
 cd laravel_service
+```
+
+install dependencies
+```
+composer install
 ```
 
 generate app key
