@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 /**
@@ -25,7 +26,14 @@ class UserFactory extends Factory
     public function definition(): array
     {
         $images = ['team-1.jpg', 'team-2.jpg','team-3.jpg','team-4.jpg','team-5.jpg'];
-        
+        $temp_imgs = $images;
+        array_push($temp_imgs, 'avatar.png');
+        foreach ($temp_imgs as $image) {
+            $sourcePath = public_path('assets/img/' . $image);
+            $destinationPath = 'public/images/' . $image;
+            Storage::put($destinationPath, file_get_contents($sourcePath));
+        }
+
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
