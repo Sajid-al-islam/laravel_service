@@ -56,25 +56,25 @@ clone project
 git clone https://github.com/Sajid-al-islam/laravel_service.git
 ```
 
-install dependencies
-```
-composer install
-```
-
 swith directory to project
 ```
 cd laravel_service
 ```
 
-generate app key
+install dependencies
 ```
-php artisan key:generate
+composer install
 ```
 
 copy .env.example and paste as .env
 ```
 cp .env.example .env
 or copy .env.example .env
+```
+
+generate app key
+```
+php artisan key:generate
 ```
 
 open in vs code editor
