@@ -66,15 +66,15 @@ install dependencies
 composer install
 ```
 
-generate app key
-```
-php artisan key:generate
-```
-
 copy .env.example and paste as .env
 ```
 cp .env.example .env
 or copy .env.example .env
+```
+
+generate app key
+```
+php artisan key:generate
 ```
 
 open in vs code editor
