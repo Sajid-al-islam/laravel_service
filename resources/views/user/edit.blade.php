@@ -143,21 +143,22 @@
         let addressFieldIndex = 1;
 
         addAddressFieldBtn.addEventListener('click', () => {
+            const newIndex = document.querySelectorAll('.addressField').length;
             const newAddressField = document.createElement('div');
             newAddressField.classList.add('addressField', 'col-12', 'col-md-6');
             newAddressField.innerHTML = `
                 <div class="row">
                     <div class="col-12">
-                        <input type="text" name="addresses[${addressFieldIndex}][address]" placeholder="Address Line 1" class="form-control mb-2">
+                        <input type="text" name="addresses[${newIndex}][address]" placeholder="Address Line 1" class="form-control mb-2">
                     </div>
                     <div class="col-4">
-                        <input type="text" name="addresses[${addressFieldIndex}][city]" placeholder="City" class="form-control">
+                        <input type="text" name="addresses[${newIndex}][city]" placeholder="City" class="form-control">
                     </div>
                     <div class="col-4">
-                        <input type="text" name="addresses[${addressFieldIndex}][state]" placeholder="State" class="form-control">
+                        <input type="text" name="addresses[${newIndex}][state]" placeholder="State" class="form-control">
                     </div>
                     <div class="col-4">
-                        <input type="text" name="addresses[${addressFieldIndex}][zip_code]" placeholder="Zip Code" class="form-control">
+                        <input type="text" name="addresses[${newIndex}][zip_code]" placeholder="Zip Code" class="form-control">
                     </div>
                     <div class="col-12 mt-2">
                         <button type="button" class="deleteAddressField btn btn-danger">Delete</button>
@@ -165,7 +166,6 @@
                 </div>
             `;
             addressFieldsContainer.appendChild(newAddressField);
-            addressFieldIndex++;
             addDeleteAddressFieldListeners();
         });
 

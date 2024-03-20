@@ -71,6 +71,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, string $id)
     {
+//        dd($request->all());
         $user = $this->userService->updateUser($id, $request->validated());
         if(!empty($user->photo)) {
             $this->deleteOldFile($user->photo);
